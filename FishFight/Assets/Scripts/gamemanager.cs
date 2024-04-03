@@ -7,7 +7,6 @@ public enum GameState
 {
     FirstSelect,
     ResolutionOne,
-    CheckPlayerDeath,
     SecondSelect,
     ResolutionTwo,
     ResetHand
