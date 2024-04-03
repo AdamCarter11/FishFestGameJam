@@ -6,11 +6,9 @@ using UnityEngine;
 public enum GameState
 {
     FirstSelect,
-    WaitPlayers,
     ResolutionOne,
     CheckPlayerDeath,
     SecondSelect,
-    TimeLimit,
     ResolutionTwo,
     ResetHand
 }
