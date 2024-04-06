@@ -16,6 +16,7 @@ public class AIFish_Script : MonoBehaviour
         agent.updateRotation = false;
         agent.updateUpAxis = false;
         SetRandomDestination();
+        timer = Time.time;
     }
      
     void Update()
@@ -26,12 +27,11 @@ public class AIFish_Script : MonoBehaviour
             if (agent.remainingDistance <= agent.stoppingDistance)
             {
                 // Start waiting
-                timer += Time.deltaTime;
-                if (timer >= waitTime)
+                if (Time.time - timer >= waitTime)
                 {
                     // Reset timer and set new destination
-                    timer = 0f;
                     SetRandomDestination();
+                    timer = Time.time; // Update the timer with the current time
                 }
             }
         }
