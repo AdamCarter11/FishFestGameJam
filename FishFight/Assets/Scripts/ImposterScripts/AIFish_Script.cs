@@ -52,7 +52,7 @@ public class AIFish_Script : MonoBehaviour
         else
             randomPoint = RandomNavmeshPointWithinRange(lastRandomPoint, pointRange);
 
-        print("new point: " + randomPoint);
+        //print("new point: " + randomPoint);
         agent.SetDestination(randomPoint);
 
         // Set random wait time
