@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class AIFish_Script : MonoBehaviour
 {
+    [SerializeField] float pointRange = 2;
     NavMeshAgent agent;
     bool isMoving = false;
     float waitTime;
@@ -37,15 +38,26 @@ public class AIFish_Script : MonoBehaviour
         }
     }
 
+    Vector3 lastRandomPoint;
     void SetRandomDestination()
     {
+        Vector3 randomPoint;
         // Generate random destination on NavMesh
-        Vector3 randomPoint = RandomNavmeshPoint();
+        //Vector3 randomPoint = RandomNavmeshPoint();
+
+        int totallyRandoPointChance = Random.Range(0, 10);
+        if(totallyRandoPointChance < 2)
+            randomPoint = RandomNavmeshPoint();
+        else
+            randomPoint = RandomNavmeshPointWithinRange(lastRandomPoint, pointRange);
+
         print("new point: " + randomPoint);
         agent.SetDestination(randomPoint);
 
         // Set random wait time
         waitTime = Random.Range(.5f, 2f);
+
+        lastRandomPoint = randomPoint;
 
         // Start moving
         isMoving = true;
@@ -56,5 +68,14 @@ public class AIFish_Script : MonoBehaviour
         float randoX = Random.Range(-9, 9);
         float randoY = Random.Range(-5, 5);
         return new Vector3(randoX, randoY, 0);
+    }
+    Vector3 RandomNavmeshPointWithinRange(Vector3 center, float range)
+    {
+        // Generate random direction within range
+        Vector3 randomDirection = Random.insideUnitSphere * range;
+        randomDirection += center;
+        NavMeshHit hit;
+        NavMesh.SamplePosition(randomDirection, out hit, range, NavMesh.AllAreas);
+        return hit.position;
     }
 }
