@@ -10,7 +10,7 @@ public class AIFish_Script : MonoBehaviour
     bool isMoving = false;
     float waitTime;
     float timer;
-
+    Vector3 lastRandomPoint;
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -18,6 +18,7 @@ public class AIFish_Script : MonoBehaviour
         agent.updateUpAxis = false;
         SetRandomDestination();
         timer = Time.time;
+        lastRandomPoint = transform.position;
     }
      
     void Update()
@@ -38,7 +39,7 @@ public class AIFish_Script : MonoBehaviour
         }
     }
 
-    Vector3 lastRandomPoint;
+    
     void SetRandomDestination()
     {
         Vector3 randomPoint;
