@@ -160,6 +160,7 @@ public class AIFish_Script : MonoBehaviour
         {
             spawnedRock.transform.parent = null;
             spawnedRock.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+            spawnedRock.GetComponent<BoxCollider2D>().isTrigger = false;
             spawnedRock = null;
         }
     }
