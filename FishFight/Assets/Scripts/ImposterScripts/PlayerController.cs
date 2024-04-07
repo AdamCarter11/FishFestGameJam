@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject algeaToSpawn;
     [SerializeField] GameObject foodToSpawn;
 
-    private bool hasPickup;
+    [SerializeField] Brain brain;
 
     private Rigidbody2D rb;
 
@@ -191,6 +191,13 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        //if(collision.CompareTag())
+        
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Win"))
+        {
+            brain.Escape();
+        }
     }
 }
