@@ -50,6 +50,15 @@ public class AIFish_Script : MonoBehaviour
                     timer = Time.time; // Update the timer with the current time
                 }
             }
+            else
+            {
+                if (Time.time - timer >= waitTime * 3f)
+                {
+                    // Reset timer and set new destination
+                    SetRandomDestination();
+                    timer = Time.time; // Update the timer with the current time
+                }
+            }
             Flip();
         }
         PickupLogic();
@@ -86,10 +95,12 @@ public class AIFish_Script : MonoBehaviour
         int totallyRandoPointChance = Random.Range(0, 10);
         if (totallyRandoPointChance < 2)
             randomPoint = RandomNavmeshPoint();
-        else if (totallyRandoPointChance >= 2 && totallyRandoPointChance < 8)
+        else if (totallyRandoPointChance >= 2 && totallyRandoPointChance <= 9)
             randomPoint = RandomNavmeshPointWithinRange(lastRandomPoint, pointRange);
         else
         {
+            if(rockInScene == null)
+                rockInScene = GameObject.FindGameObjectWithTag("Rock").transform;
             randomPoint = rockInScene.position;
             waitTime = Random.Range(pickupTime / 2f, pickupTime * 1.1f);
         }
@@ -109,7 +120,7 @@ public class AIFish_Script : MonoBehaviour
     Vector3 RandomNavmeshPoint()
     {
         float randoX = Random.Range(-9, 9);
-        float randoY = Random.Range(-5, 5);
+        float randoY = Random.Range(-3.8f, 3.8f);
         return new Vector3(randoX, randoY, 0);
     }
     Vector3 RandomNavmeshPointWithinRange(Vector3 center, float range)
@@ -124,6 +135,8 @@ public class AIFish_Script : MonoBehaviour
 
     private void PickupLogic()
     {
+        if (rockInScene == null)
+            rockInScene = GameObject.FindGameObjectWithTag("Rock").transform;
         if (Vector2.Distance(transform.position, rockInScene.position) <= pickupDistance)
         {
             if (rockCoroutine == null && spawnedRock == null)
