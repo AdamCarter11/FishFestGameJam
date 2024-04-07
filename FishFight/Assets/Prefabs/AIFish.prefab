@@ -126,7 +126,9 @@ MonoBehaviour:
   pickupDistance: 3
   pickupTime: 2
   holdPoint: {fileID: 7175670432164262403}
-  rockToSpawn: {fileID: 8471234088914903900, guid: b78b526455493ff4481eb3093866cb11, type: 3}
+  rockToSpawn: {fileID: 8471234088914903900, guid: e0ec45dc7c3927d478e6c452dbead188, type: 3}
+  algeaToSpawn: {fileID: 8471234088914903900, guid: 04f14434453e01040a2274b248d89e42, type: 3}
+  foodToSpawn: {fileID: 8471234088914903900, guid: b7ee590462f482e448d73ed8b1afb8b9, type: 3}
   dropMin: 3
   dropMax: 6
 --- !u!1 &7175670431786577597

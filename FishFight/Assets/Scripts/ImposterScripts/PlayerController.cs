@@ -14,6 +14,10 @@ public class PlayerController : MonoBehaviour
     [Tooltip("time in seconds")] [SerializeField] float pickupTime = 2f;
     [SerializeField] GameObject holdPoint;
     [SerializeField] GameObject rockToSpawn;
+    [SerializeField] GameObject algeaToSpawn;
+    [SerializeField] GameObject foodToSpawn;
+
+    private bool hasPickup;
 
     private Rigidbody2D rb;
 
@@ -23,12 +27,22 @@ public class PlayerController : MonoBehaviour
     Coroutine rockCoroutine = null;
     GameObject spawnedRock;
 
+    Transform algeaInScene;
+    Coroutine algeaCoroutine = null;
+    GameObject spawnedAlgea;
+
+    Transform foodInScene;
+    Coroutine foodCoroutine = null;
+    GameObject spawnedFood;
+
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         rockInScene = GameObject.FindGameObjectWithTag("Rock").transform;
+        algeaInScene = GameObject.FindGameObjectWithTag("Algea").transform;
+        foodInScene = GameObject.FindGameObjectWithTag("Food").transform;
     }
 
     // Update is called once per frame
@@ -54,6 +68,22 @@ public class PlayerController : MonoBehaviour
             spawnedRock.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
             spawnedRock.GetComponent<BoxCollider2D>().isTrigger = false;
             spawnedRock = null;
+        }
+
+        if (spawnedAlgea && Input.GetKeyDown(KeyCode.E))
+        {
+            spawnedAlgea.transform.parent = null;
+            spawnedAlgea.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+            spawnedAlgea.GetComponent<BoxCollider2D>().isTrigger = false;
+            spawnedAlgea = null;
+        }
+
+        if (spawnedFood && Input.GetKeyDown(KeyCode.E))
+        {
+            spawnedFood.transform.parent = null;
+            spawnedFood.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+            spawnedFood.GetComponent<BoxCollider2D>().isTrigger = false;
+            spawnedFood = null;
         }
     }
 
@@ -89,7 +119,7 @@ public class PlayerController : MonoBehaviour
     {
         if(Vector2.Distance(transform.position, rockInScene.position) <= pickupDistance)
         {
-            if (rockCoroutine == null && spawnedRock == null)
+            if (rockCoroutine == null && spawnedRock == null && spawnedAlgea == null && spawnedFood == null)
             {
                 rockCoroutine = StartCoroutine(RockPickUp());
             }
@@ -102,6 +132,38 @@ public class PlayerController : MonoBehaviour
                 rockCoroutine = null;
             }
         }
+
+        if (Vector2.Distance(transform.position, algeaInScene.position) <= pickupDistance)
+        {
+            if (algeaCoroutine == null && spawnedAlgea == null && spawnedFood == null && spawnedAlgea == null)
+            {
+                algeaCoroutine = StartCoroutine(AlgeaPickUp());
+            }
+        }
+        else
+        {
+            if (algeaCoroutine != null)
+            {
+                StopCoroutine(algeaCoroutine);
+                algeaCoroutine = null;
+            }
+        }
+
+        if (Vector2.Distance(transform.position, foodInScene.position) <= pickupDistance)
+        {
+            if (foodCoroutine == null  && spawnedRock == null && spawnedFood == null && spawnedAlgea == null)
+            {
+                foodCoroutine = StartCoroutine(FoodPickUp());
+            }
+        }
+        else
+        {
+            if (foodCoroutine != null)
+            {
+                StopCoroutine(foodCoroutine);
+                foodCoroutine = null;
+            }
+        }
     }
     IEnumerator RockPickUp()
     {
@@ -109,5 +171,26 @@ public class PlayerController : MonoBehaviour
         // pickup rock
         spawnedRock = Instantiate(rockToSpawn, holdPoint.transform.position, Quaternion.identity);
         spawnedRock.transform.SetParent(transform);
+    }
+
+    IEnumerator AlgeaPickUp()
+    {
+        yield return new WaitForSeconds(pickupTime);
+        // pickup rock
+        spawnedAlgea = Instantiate(algeaToSpawn, holdPoint.transform.position, Quaternion.identity);
+        spawnedAlgea.transform.SetParent(transform);
+    }
+
+    IEnumerator FoodPickUp()
+    {
+        yield return new WaitForSeconds(pickupTime);
+        // pickup rock
+        spawnedFood = Instantiate(foodToSpawn, holdPoint.transform.position, Quaternion.identity);
+        spawnedFood.transform.SetParent(transform);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        //if(collision.CompareTag())
     }
 }

@@ -12,6 +12,8 @@ public class AIFish_Script : MonoBehaviour
     [Tooltip("time in seconds")][SerializeField] float pickupTime = 2f;
     [SerializeField] GameObject holdPoint;
     [SerializeField] GameObject rockToSpawn;
+    [SerializeField] GameObject algeaToSpawn;
+    [SerializeField] GameObject foodToSpawn;
     [SerializeField] float dropMin = 3f, dropMax = 6f;
 
     NavMeshAgent agent;
@@ -23,6 +25,14 @@ public class AIFish_Script : MonoBehaviour
     Transform rockInScene;
     Coroutine rockCoroutine = null;
     GameObject spawnedRock;
+
+    Transform algeaInScene;
+    Coroutine algeaCoroutine = null;
+    GameObject spawnedAlgea;
+
+    Transform foodInScene;
+    Coroutine foodCoroutine = null;
+    GameObject spawnedFood;
 
     void Start()
     {
@@ -137,6 +147,10 @@ public class AIFish_Script : MonoBehaviour
     {
         if (rockInScene == null)
             rockInScene = GameObject.FindGameObjectWithTag("Rock").transform;
+        if (algeaInScene == null)
+            algeaInScene = GameObject.FindGameObjectWithTag("Algea").transform;
+        if (foodInScene == null)
+            foodInScene = GameObject.FindGameObjectWithTag("Food").transform;
         if (Vector2.Distance(transform.position, rockInScene.position) <= pickupDistance)
         {
             if (rockCoroutine == null && spawnedRock == null)
@@ -152,6 +166,38 @@ public class AIFish_Script : MonoBehaviour
                 rockCoroutine = null;
             }
         }
+
+        if (Vector2.Distance(transform.position, algeaInScene.position) <= pickupDistance)
+        {
+            if (algeaCoroutine == null && spawnedAlgea == null && spawnedFood == null && spawnedAlgea == null)
+            {
+                algeaCoroutine = StartCoroutine(AlgeaPickUp());
+            }
+        }
+        else
+        {
+            if (algeaCoroutine != null)
+            {
+                StopCoroutine(algeaCoroutine);
+                algeaCoroutine = null;
+            }
+        }
+
+        if (Vector2.Distance(transform.position, foodInScene.position) <= pickupDistance)
+        {
+            if (foodCoroutine == null && spawnedRock == null && spawnedFood == null && spawnedAlgea == null)
+            {
+                foodCoroutine = StartCoroutine(FoodPickUp());
+            }
+        }
+        else
+        {
+            if (foodCoroutine != null)
+            {
+                StopCoroutine(foodCoroutine);
+                foodCoroutine = null;
+            }
+        }
     }
     IEnumerator RockPickUp()
     {
@@ -160,6 +206,22 @@ public class AIFish_Script : MonoBehaviour
         spawnedRock = Instantiate(rockToSpawn, holdPoint.transform.position, Quaternion.identity);
         spawnedRock.transform.SetParent(transform);
         StartCoroutine(RandomDropTime());
+    }
+
+    IEnumerator AlgeaPickUp()
+    {
+        yield return new WaitForSeconds(pickupTime);
+        // pickup rock
+        spawnedAlgea = Instantiate(algeaToSpawn, holdPoint.transform.position, Quaternion.identity);
+        spawnedAlgea.transform.SetParent(transform);
+    }
+
+    IEnumerator FoodPickUp()
+    {
+        yield return new WaitForSeconds(pickupTime);
+        // pickup rock
+        spawnedFood = Instantiate(foodToSpawn, holdPoint.transform.position, Quaternion.identity);
+        spawnedFood.transform.SetParent(transform);
     }
     IEnumerator RandomDropTime()
     {
@@ -175,6 +237,22 @@ public class AIFish_Script : MonoBehaviour
             spawnedRock.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
             spawnedRock.GetComponent<BoxCollider2D>().isTrigger = false;
             spawnedRock = null;
+        }
+
+        if (spawnedAlgea && Input.GetKeyDown(KeyCode.E))
+        {
+            spawnedAlgea.transform.parent = null;
+            spawnedAlgea.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+            spawnedAlgea.GetComponent<BoxCollider2D>().isTrigger = false;
+            spawnedAlgea = null;
+        }
+
+        if (spawnedFood && Input.GetKeyDown(KeyCode.E))
+        {
+            spawnedFood.transform.parent = null;
+            spawnedFood.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+            spawnedFood.GetComponent<BoxCollider2D>().isTrigger = false;
+            spawnedFood = null;
         }
     }
 }

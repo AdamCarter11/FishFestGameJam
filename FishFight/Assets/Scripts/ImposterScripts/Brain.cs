@@ -18,6 +18,10 @@ public class Brain : MonoBehaviour
     [SerializeField] GameObject live2;
     [SerializeField] GameObject live3;
 
+    public bool rockFilled;
+    public bool algeaFilled;
+    public bool foodFilled;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -78,5 +82,26 @@ public class Brain : MonoBehaviour
     {
         gameOver = true;
         winText.text = "Fisherman Wins";
+    }
+
+    public void FillFilter(int drop)
+    {
+        if (drop == 1)
+        {
+            rockFilled = true;
+            print("rockFilled");
+        }
+        if (drop == 2)
+        {
+            algeaFilled = true;
+        }
+        if (drop == 3)
+        {
+            foodFilled = true;
+        }
+        if (foodFilled && algeaFilled && rockFilled) 
+        {
+           
+        }
     }
 }

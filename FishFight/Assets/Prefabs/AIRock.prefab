@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: -7338559733815403844}
   - component: {fileID: 5375792362905051350}
   m_Layer: 0
-  m_Name: RockPrefab
-  m_TagString: RockDrop
+  m_Name: AIRock
+  m_TagString: AIDrop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
