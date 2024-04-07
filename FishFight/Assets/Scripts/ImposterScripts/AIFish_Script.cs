@@ -36,9 +36,29 @@ public class AIFish_Script : MonoBehaviour
                     timer = Time.time; // Update the timer with the current time
                 }
             }
+            Flip();
         }
     }
 
+    private void Flip()
+    {
+        // Determine if moving left or right
+        Vector3 currentPosition = transform.position;
+        float movementDirection = currentPosition.x - lastRandomPoint.x;
+
+        if (movementDirection > 0)
+        {
+            // Moving right
+            transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+        }
+        else if (movementDirection < 0)
+        {
+            // Moving left
+            transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+        }
+        // Update the last position
+        lastRandomPoint = currentPosition;
+    }
     
     void SetRandomDestination()
     {
