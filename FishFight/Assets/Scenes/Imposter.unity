@@ -745,7 +745,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -5
+  m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: 7c6181efa442d1e4a84bb163d1513327, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1470,6 +1470,7 @@ MonoBehaviour:
   rockToSpawn: {fileID: 8471234088914903900, guid: b78b526455493ff4481eb3093866cb11, type: 3}
   algeaToSpawn: {fileID: 8471234088914903900, guid: 593dfd7f512c97748876cc25bc274fd3, type: 3}
   foodToSpawn: {fileID: 8471234088914903900, guid: 48edc2656f66e504f97a991af6625fbd, type: 3}
+  brain: {fileID: 1002310211}
 --- !u!61 &1156485820
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1714,7 +1715,7 @@ GameObject:
   - component: {fileID: 1347046910}
   - component: {fileID: 1347046909}
   m_Layer: 0
-  m_Name: live2 (1)
+  m_Name: live3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1760,7 +1761,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -5
+  m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: 7c6181efa442d1e4a84bb163d1513327, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2513,7 +2514,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -5
+  m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: 7c6181efa442d1e4a84bb163d1513327, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2628,7 +2629,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_TargetDisplay: 0
 --- !u!1 &1815611293
 GameObject:
