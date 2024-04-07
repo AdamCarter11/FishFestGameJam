@@ -84,6 +84,12 @@ public class Brain : MonoBehaviour
         winText.text = "Fisherman Wins";
     }
 
+    public void Escape()
+    {
+        gameOver = true;
+        winText.text = "Fish Wins";
+    }
+
     public void FillFilter(int drop)
     {
         if (drop == 1)
