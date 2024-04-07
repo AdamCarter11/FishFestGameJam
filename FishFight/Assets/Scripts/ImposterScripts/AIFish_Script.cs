@@ -6,11 +6,24 @@ using UnityEngine.AI;
 public class AIFish_Script : MonoBehaviour
 {
     [SerializeField] float pointRange = 2;
+
+    [Header("Pickup vars")]
+    [SerializeField] float pickupDistance = 3;
+    [Tooltip("time in seconds")][SerializeField] float pickupTime = 2f;
+    [SerializeField] GameObject holdPoint;
+    [SerializeField] GameObject rockToSpawn;
+    [SerializeField] float dropMin = 3f, dropMax = 6f;
+
     NavMeshAgent agent;
     bool isMoving = false;
     float waitTime;
     float timer;
     Vector3 lastRandomPoint;
+
+    Transform rockInScene;
+    Coroutine rockCoroutine = null;
+    GameObject spawnedRock;
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -19,6 +32,7 @@ public class AIFish_Script : MonoBehaviour
         SetRandomDestination();
         timer = Time.time;
         lastRandomPoint = transform.position;
+        rockInScene = GameObject.FindGameObjectWithTag("Rock").transform;
     }
      
     void Update()
@@ -38,6 +52,7 @@ public class AIFish_Script : MonoBehaviour
             }
             Flip();
         }
+        PickupLogic();
     }
 
     private void Flip()
@@ -66,17 +81,24 @@ public class AIFish_Script : MonoBehaviour
         // Generate random destination on NavMesh
         //Vector3 randomPoint = RandomNavmeshPoint();
 
+        waitTime = Random.Range(.5f, 2f);
+
         int totallyRandoPointChance = Random.Range(0, 10);
-        if(totallyRandoPointChance < 2)
+        if (totallyRandoPointChance < 2)
             randomPoint = RandomNavmeshPoint();
-        else
+        else if (totallyRandoPointChance >= 2 && totallyRandoPointChance < 8)
             randomPoint = RandomNavmeshPointWithinRange(lastRandomPoint, pointRange);
+        else
+        {
+            randomPoint = rockInScene.position;
+            waitTime = Random.Range(pickupTime / 2f, pickupTime * 1.1f);
+        }
 
         //print("new point: " + randomPoint);
         agent.SetDestination(randomPoint);
 
         // Set random wait time
-        waitTime = Random.Range(.5f, 2f);
+        
 
         lastRandomPoint = randomPoint;
 
@@ -98,5 +120,47 @@ public class AIFish_Script : MonoBehaviour
         NavMeshHit hit;
         NavMesh.SamplePosition(randomDirection, out hit, range, NavMesh.AllAreas);
         return hit.position;
+    }
+
+    private void PickupLogic()
+    {
+        if (Vector2.Distance(transform.position, rockInScene.position) <= pickupDistance)
+        {
+            if (rockCoroutine == null && spawnedRock == null)
+            {
+                rockCoroutine = StartCoroutine(RockPickUp());
+            }
+        }
+        else
+        {
+            if (rockCoroutine != null)
+            {
+                StopCoroutine(rockCoroutine);
+                rockCoroutine = null;
+            }
+        }
+    }
+    IEnumerator RockPickUp()
+    {
+        yield return new WaitForSeconds(pickupTime);
+        // pickup rock
+        spawnedRock = Instantiate(rockToSpawn, holdPoint.transform.position, Quaternion.identity);
+        spawnedRock.transform.SetParent(transform);
+        StartCoroutine(RandomDropTime());
+    }
+    IEnumerator RandomDropTime()
+    {
+        float rando = Random.Range(dropMin, dropMax);
+        yield return new WaitForSeconds(rando);
+        DropLogic();
+    }
+    private void DropLogic()
+    {
+        if (spawnedRock)
+        {
+            spawnedRock.transform.parent = null;
+            spawnedRock.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+            spawnedRock = null;
+        }
     }
 }
