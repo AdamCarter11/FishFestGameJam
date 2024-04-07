@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: -7338559733815403844}
   - component: {fileID: 5375792362905051350}
   m_Layer: 0
-  m_Name: RockPrefab
-  m_TagString: RockDrop
+  m_Name: AIAlgea
+  m_TagString: AIDrop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2024189492, guid: 03be6dbefbff7694bad845bb3a546dab, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 1, b: 0.20784187, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

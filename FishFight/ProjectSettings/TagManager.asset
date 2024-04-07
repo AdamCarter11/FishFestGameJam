@@ -6,6 +6,13 @@ TagManager:
   tags:
   - GM
   - Rock
+  - RockDrop
+  - AIDrop
+  - FoodDrop
+  - AlgeaDrop
+  - Algea
+  - Food
+  - Win
   layers:
   - Default
   - TransparentFX
