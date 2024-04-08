@@ -12,11 +12,12 @@ public class Brain : MonoBehaviour
 
     private float currentTime;
     public float totalTime = 180;
-    [SerializeField] Text winText;
-    [SerializeField] Text timer;
+    [SerializeField] TextMeshProUGUI winText;
+    [SerializeField] TextMeshProUGUI timer;
     [SerializeField] GameObject live1;
     [SerializeField] GameObject live2;
     [SerializeField] GameObject live3;
+    [SerializeField] GameObject escapeSprite;
 
     public bool rockFilled;
     public bool algeaFilled;
@@ -82,12 +83,14 @@ public class Brain : MonoBehaviour
     {
         gameOver = true;
         winText.text = "Fisherman Wins";
+        //Time.timeScale = 0;
     }
 
     public void Escape()
     {
         gameOver = true;
         winText.text = "Fish Wins";
+        //Time.timeScale = 0;
     }
 
     public void FillFilter(int drop)
@@ -107,7 +110,11 @@ public class Brain : MonoBehaviour
         }
         if (foodFilled && algeaFilled && rockFilled) 
         {
-           
+            escapeSprite.SetActive(true);
+        }
+        else
+        {
+            escapeSprite.SetActive(false);
         }
     }
 }
