@@ -69,6 +69,7 @@ public class PlayerController : MonoBehaviour
             spawnedRock.transform.parent = null;
             spawnedRock.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
             spawnedRock.GetComponent<BoxCollider2D>().isTrigger = false;
+            spawnedRock.GetComponent<Drops>().StartDestroyTime();
             spawnedRock = null;
         }
 
@@ -77,6 +78,7 @@ public class PlayerController : MonoBehaviour
             spawnedAlgea.transform.parent = null;
             spawnedAlgea.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
             spawnedAlgea.GetComponent<BoxCollider2D>().isTrigger = false;
+            spawnedAlgea.GetComponent<Drops>().StartDestroyTime();
             spawnedAlgea = null;
         }
 
@@ -85,6 +87,7 @@ public class PlayerController : MonoBehaviour
             spawnedFood.transform.parent = null;
             spawnedFood.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
             spawnedFood.GetComponent<BoxCollider2D>().isTrigger = false;
+            spawnedFood.GetComponent<Drops>().StartDestroyTime();
             spawnedFood = null;
         }
     }
