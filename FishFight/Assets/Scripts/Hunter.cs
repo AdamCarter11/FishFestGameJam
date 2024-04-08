@@ -7,6 +7,7 @@ public class Hunter : MonoBehaviour
     private Vector3 mousePosition;
     public bool onFish;
     [SerializeField] Brain brain;
+    [SerializeField] AudioSource click;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,12 +26,14 @@ public class Hunter : MonoBehaviour
             //Win
             print("win");
             brain.HunterWin();
+            click.Play();
         }
         if(Input.GetMouseButtonDown(0) && !onFish && brain.gameOver == false)
         {
             //Lose Life
             print("-1");
             brain.loseLife();
+            click.Play();
 
         }
     }
