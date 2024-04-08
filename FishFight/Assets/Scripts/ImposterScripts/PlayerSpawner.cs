@@ -11,7 +11,9 @@ public class PlayerSpawner : MonoBehaviour
         float randoX = Random.Range(-5, 5);
         float randoY = Random.Range(-3.5f, 3.5f);
         Vector2 spawnPos = new Vector2(randoX, randoY);
-        Instantiate(playerPrefabs[Random.Range(0, playerPrefabs.Count)], spawnPos, Quaternion.identity);
+        int fishType = Random.Range(0, playerPrefabs.Count);
+        GameObject tempPlayer = Instantiate(playerPrefabs[fishType], spawnPos, Quaternion.identity);
+        tempPlayer.GetComponent<PlayerController>().SetFishType(fishType);
     }
 
 }

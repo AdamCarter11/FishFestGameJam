@@ -29,4 +29,18 @@ public class FishSpawner : MonoBehaviour
             }
         }
     }
+
+    public void SwapPosition(GameObject playerFish)
+    {
+        foreach (GameObject fishPref in spawnedFish)
+        {
+            if(fishPref.GetComponent<AIFish_Script>().ReturnFishType() == playerFish.GetComponent<PlayerController>().ReturnFishType())
+            {
+                Vector3 newPos = playerFish.transform.position;
+                playerFish.transform.position = fishPref.transform.position;
+                fishPref.transform.position = newPos;
+            }
+        }
+        
+    }
 }

@@ -974,7 +974,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: 70eb1b1c613c85b49a9fc14ffd5bb697, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1221,7 +1221,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 750824818}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -11.54, y: 2.87, z: 0}
+  m_LocalPosition: {x: -11.14, y: 2.87, z: 0}
   m_LocalScale: {x: 10, y: 7.94, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3320,7 +3320,7 @@ GameObject:
   - component: {fileID: 1824141569}
   m_Layer: 0
   m_Name: FishSpawner
-  m_TagString: Untagged
+  m_TagString: fishSpawner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3339,10 +3339,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fishToSpawn: 10
   fishPrefabs:
-  - {fileID: 7175670431291346816, guid: c90187c86f70be348a5178989c40de0d, type: 3}
   - {fileID: 7175670431291346816, guid: 21295db8ada564b448034ec411784735, type: 3}
   - {fileID: 7175670431291346816, guid: 6246414e63431334cafad3f764b711ba, type: 3}
   - {fileID: 7175670431291346816, guid: 3744e491717c4754690a4aca0828456b, type: 3}
+  - {fileID: 7175670431291346816, guid: c90187c86f70be348a5178989c40de0d, type: 3}
 --- !u!4 &1824141570
 Transform:
   m_ObjectHideFlags: 0

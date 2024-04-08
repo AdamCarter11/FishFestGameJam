@@ -37,6 +37,9 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] AudioSource pickUp;
 
+    int fishType;
+    FishSpawner fishSpawner;
+
 
     // Start is called before the first frame update
     void Start()
@@ -49,6 +52,8 @@ public class PlayerController : MonoBehaviour
         foodInScene = GameObject.FindGameObjectWithTag("Food").transform;
         if (pickUp == null)
             pickUp = GameObject.FindGameObjectWithTag("Pickup").GetComponent<AudioSource>();
+
+        fishSpawner = GameObject.FindGameObjectWithTag("fishSpawner").GetComponent<FishSpawner>();
     }
 
     // Update is called once per frame
@@ -59,11 +64,21 @@ public class PlayerController : MonoBehaviour
         PickupLogic();
 
         DropLogic();
+
+        SwapLogic();
     }
 
     private void FixedUpdate()
     {
         MoveLogic();
+    }
+
+    private void SwapLogic()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            fishSpawner.SwapPosition(this.gameObject);
+        }
     }
 
     private void DropLogic()
@@ -211,5 +226,14 @@ public class PlayerController : MonoBehaviour
         {
             brain.Escape();
         }
+    }
+
+    public int ReturnFishType()
+    {
+        return fishType;
+    }
+    public void SetFishType(int newType)
+    {
+        fishType = newType;
     }
 }
