@@ -2546,6 +2546,8 @@ MonoBehaviour:
   onFish: 0
   brain: {fileID: 1002310211}
   click: {fileID: 2007958288}
+  baitPrefab: {fileID: 3229020197669881888, guid: ff9e176e5fdbb714bbd442aec314e63a, type: 3}
+  baitsAmmo: 2
 --- !u!61 &1506625775
 BoxCollider2D:
   m_ObjectHideFlags: 0

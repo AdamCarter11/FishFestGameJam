@@ -33,6 +33,7 @@ public class AIFish_Script : MonoBehaviour
     Transform foodInScene;
     Coroutine foodCoroutine = null;
     GameObject spawnedFood;
+    GameObject bait;
 
     [SerializeField] AudioSource pickup;
 
@@ -76,6 +77,11 @@ public class AIFish_Script : MonoBehaviour
                 }
             }
             Flip();
+        }
+        bait = GameObject.FindGameObjectWithTag("bait");
+        if(bait != null)
+        {
+            agent.SetDestination(bait.transform.position);
         }
         PickupLogic();
     }
