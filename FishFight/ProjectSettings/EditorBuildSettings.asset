@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Imposter.unity
     guid: 7a0f6b08c80102d4dac4e4f2cf6e85ba
+  - enabled: 1
+    path: Assets/Scenes/Menu.unity
+    guid: 8471c152d71d1fb468f8ae59caf18259
   m_configObjects: {}
