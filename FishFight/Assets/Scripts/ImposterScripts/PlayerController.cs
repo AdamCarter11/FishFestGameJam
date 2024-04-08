@@ -40,6 +40,8 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        if (brain == null)
+            brain = GameObject.FindGameObjectWithTag("GM").GetComponent<Brain>();
         rockInScene = GameObject.FindGameObjectWithTag("Rock").transform;
         algeaInScene = GameObject.FindGameObjectWithTag("Algea").transform;
         foodInScene = GameObject.FindGameObjectWithTag("Food").transform;
