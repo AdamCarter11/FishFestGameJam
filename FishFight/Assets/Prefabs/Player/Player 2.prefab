@@ -152,9 +152,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 454eea17a83075e49b5baadf09376b0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  swapAmmo: 1
+  swapAmmoText: {fileID: 0}
+  moveSpeed: 4
   acceleration: 5
-  maxSpeed: 10
+  maxSpeed: 7
   pickupDistance: 3
   pickupTime: 2
   holdPoint: {fileID: 3832478646491991170}
@@ -162,6 +164,7 @@ MonoBehaviour:
   algeaToSpawn: {fileID: 8471234088914903900, guid: 593dfd7f512c97748876cc25bc274fd3, type: 3}
   foodToSpawn: {fileID: 8471234088914903900, guid: 48edc2656f66e504f97a991af6625fbd, type: 3}
   brain: {fileID: 0}
+  pickUp: {fileID: 0}
 --- !u!61 &3832478647625600526
 BoxCollider2D:
   m_ObjectHideFlags: 0
