@@ -160,7 +160,7 @@ public class AIFish_Script : MonoBehaviour
             if (rockCoroutine == null && spawnedRock == null)
             {
                 rockCoroutine = StartCoroutine(RockPickUp());
-                pickup.Play();
+                
             }
         }
         else
@@ -177,7 +177,7 @@ public class AIFish_Script : MonoBehaviour
             if (algeaCoroutine == null && spawnedAlgea == null && spawnedFood == null && spawnedAlgea == null)
             {
                 algeaCoroutine = StartCoroutine(AlgeaPickUp());
-                pickup.Play();
+                
             }
         }
         else
@@ -194,7 +194,7 @@ public class AIFish_Script : MonoBehaviour
             if (foodCoroutine == null && spawnedRock == null && spawnedFood == null && spawnedAlgea == null)
             {
                 foodCoroutine = StartCoroutine(FoodPickUp());
-                pickup.Play();
+                
             }
         }
         else
@@ -212,6 +212,7 @@ public class AIFish_Script : MonoBehaviour
         // pickup rock
         spawnedRock = Instantiate(rockToSpawn, holdPoint.transform.position, Quaternion.identity);
         spawnedRock.transform.SetParent(transform);
+        pickup.Play();
         StartCoroutine(RandomDropTime());
     }
 
@@ -221,6 +222,8 @@ public class AIFish_Script : MonoBehaviour
         // pickup rock
         spawnedAlgea = Instantiate(algeaToSpawn, holdPoint.transform.position, Quaternion.identity);
         spawnedAlgea.transform.SetParent(transform);
+        pickup.Play();
+        StartCoroutine(RandomDropTime());
     }
 
     IEnumerator FoodPickUp()
@@ -229,6 +232,8 @@ public class AIFish_Script : MonoBehaviour
         // pickup rock
         spawnedFood = Instantiate(foodToSpawn, holdPoint.transform.position, Quaternion.identity);
         spawnedFood.transform.SetParent(transform);
+        pickup.Play();
+        StartCoroutine(RandomDropTime());
     }
     IEnumerator RandomDropTime()
     {
@@ -246,7 +251,7 @@ public class AIFish_Script : MonoBehaviour
             spawnedRock = null;
         }
 
-        if (spawnedAlgea && Input.GetKeyDown(KeyCode.E))
+        if (spawnedAlgea)
         {
             spawnedAlgea.transform.parent = null;
             spawnedAlgea.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
@@ -254,7 +259,7 @@ public class AIFish_Script : MonoBehaviour
             spawnedAlgea = null;
         }
 
-        if (spawnedFood && Input.GetKeyDown(KeyCode.E))
+        if (spawnedFood)
         {
             spawnedFood.transform.parent = null;
             spawnedFood.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
