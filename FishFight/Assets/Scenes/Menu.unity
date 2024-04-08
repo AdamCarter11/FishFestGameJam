@@ -693,8 +693,8 @@ MonoBehaviour:
     escaping out of the tank\n\n\tFisherman\nCatch the fish before running out of
     hooks"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2d74e176baa48b348a3f90f92aa3f1f0, type: 2}
-  m_sharedMaterial: {fileID: 345943956252780359, guid: 2d74e176baa48b348a3f90f92aa3f1f0, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: cbc50fc7c65da404697fd16ba68e958e, type: 2}
+  m_sharedMaterial: {fileID: -8764275391094462552, guid: cbc50fc7c65da404697fd16ba68e958e, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
