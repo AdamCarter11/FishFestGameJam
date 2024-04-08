@@ -35,6 +35,8 @@ public class PlayerController : MonoBehaviour
     Coroutine foodCoroutine = null;
     GameObject spawnedFood;
 
+    [SerializeField] AudioSource pickUp;
+
 
     // Start is called before the first frame update
     void Start()
@@ -45,6 +47,8 @@ public class PlayerController : MonoBehaviour
         rockInScene = GameObject.FindGameObjectWithTag("Rock").transform;
         algeaInScene = GameObject.FindGameObjectWithTag("Algea").transform;
         foodInScene = GameObject.FindGameObjectWithTag("Food").transform;
+        if (pickUp == null)
+            pickUp = GameObject.FindGameObjectWithTag("Pickup").GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -127,6 +131,7 @@ public class PlayerController : MonoBehaviour
             if (rockCoroutine == null && spawnedRock == null && spawnedAlgea == null && spawnedFood == null)
             {
                 rockCoroutine = StartCoroutine(RockPickUp());
+                pickUp.Play();
             }
         }
         else
@@ -143,6 +148,7 @@ public class PlayerController : MonoBehaviour
             if (algeaCoroutine == null && spawnedAlgea == null && spawnedFood == null && spawnedAlgea == null)
             {
                 algeaCoroutine = StartCoroutine(AlgeaPickUp());
+                pickUp.Play();
             }
         }
         else
@@ -159,6 +165,7 @@ public class PlayerController : MonoBehaviour
             if (foodCoroutine == null  && spawnedRock == null && spawnedFood == null && spawnedAlgea == null)
             {
                 foodCoroutine = StartCoroutine(FoodPickUp());
+                pickUp.Play();
             }
         }
         else

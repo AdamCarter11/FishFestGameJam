@@ -34,6 +34,8 @@ public class AIFish_Script : MonoBehaviour
     Coroutine foodCoroutine = null;
     GameObject spawnedFood;
 
+    [SerializeField] AudioSource pickup;
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -43,6 +45,8 @@ public class AIFish_Script : MonoBehaviour
         timer = Time.time;
         lastRandomPoint = transform.position;
         rockInScene = GameObject.FindGameObjectWithTag("Rock").transform;
+        if (pickup == null)
+            pickup = GameObject.FindGameObjectWithTag("Pickup").GetComponent<AudioSource>();
     }
      
     void Update()
@@ -156,6 +160,7 @@ public class AIFish_Script : MonoBehaviour
             if (rockCoroutine == null && spawnedRock == null)
             {
                 rockCoroutine = StartCoroutine(RockPickUp());
+                pickup.Play();
             }
         }
         else
@@ -172,6 +177,7 @@ public class AIFish_Script : MonoBehaviour
             if (algeaCoroutine == null && spawnedAlgea == null && spawnedFood == null && spawnedAlgea == null)
             {
                 algeaCoroutine = StartCoroutine(AlgeaPickUp());
+                pickup.Play();
             }
         }
         else
@@ -188,6 +194,7 @@ public class AIFish_Script : MonoBehaviour
             if (foodCoroutine == null && spawnedRock == null && spawnedFood == null && spawnedAlgea == null)
             {
                 foodCoroutine = StartCoroutine(FoodPickUp());
+                pickup.Play();
             }
         }
         else
