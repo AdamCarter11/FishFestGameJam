@@ -57,7 +57,7 @@ public class Brain : MonoBehaviour
             }
             
         }
-        if(currentTime == 0)
+        if(currentTime <= 0)
         {
             gameOver = true;
             winTextBG.SetActive(true);
