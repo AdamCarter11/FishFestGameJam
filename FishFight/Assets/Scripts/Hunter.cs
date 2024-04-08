@@ -12,6 +12,8 @@ public class Hunter : MonoBehaviour
     [SerializeField] GameObject baitPrefab;
     [SerializeField] int baitsAmmo = 2;
     [SerializeField] TextMeshProUGUI baitText;
+    [SerializeField] GameObject caughtSprite;
+    GameObject caughtFish;
     GameObject spawnedBait;
     // Start is called before the first frame update
     void Start()
@@ -31,7 +33,12 @@ public class Hunter : MonoBehaviour
         {
             //Win
             print("win");
+            Destroy(caughtFish);
             brain.HunterWin();
+            caughtSprite.SetActive(true);
+            caughtSprite.transform.position = new Vector3(mousePosition.x, mousePosition.y, 0);
+            float randomRotation = Random.Range(-10, 10);
+            caughtSprite.transform.rotation = Quaternion.Euler(0f, 0f, randomRotation);
             click.Play();
         }
         if(Input.GetMouseButtonDown(0) && !onFish && brain.gameOver == false)
@@ -61,6 +68,7 @@ public class Hunter : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            caughtFish = collision.gameObject;
             onFish = true;
         }
     }
@@ -69,6 +77,7 @@ public class Hunter : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            caughtFish = null;
             onFish = false;
         }
     }

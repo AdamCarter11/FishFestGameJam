@@ -13,6 +13,7 @@ public class Brain : MonoBehaviour
     private float currentTime;
     public float totalTime = 180;
     [SerializeField] TextMeshProUGUI winText;
+    [SerializeField] GameObject winTextBG;
     [SerializeField] TextMeshProUGUI timer;
     [SerializeField] GameObject live1;
     [SerializeField] GameObject live2;
@@ -59,7 +60,8 @@ public class Brain : MonoBehaviour
         if(currentTime == 0)
         {
             gameOver = true;
-            winText.text = "Fisherman Wins";
+            winTextBG.SetActive(true);
+            winText.text = "Fisherman Wins!\nR to restart";
         }
     }
 
@@ -77,7 +79,8 @@ public class Brain : MonoBehaviour
         if(lives == 0)
         {
             live1.SetActive(false);
-            winText.text = "Fish Wins!";
+            winTextBG.SetActive(true);
+            winText.text = "Fish Wins!\nR to restart";
             gameOver = true;
         }
     }
@@ -85,14 +88,16 @@ public class Brain : MonoBehaviour
     public void HunterWin()
     {
         gameOver = true;
-        winText.text = "Fisherman Wins";
+        winTextBG.SetActive(true);
+        winText.text = "Fisherman Wins!\nR to restart";
         //Time.timeScale = 0;
     }
 
     public void Escape()
     {
         gameOver = true;
-        winText.text = "Fish Wins";
+        winTextBG.SetActive(true);
+        winText.text = "Fish Wins!\nR to restart";
         //Time.timeScale = 0;
     }
 
