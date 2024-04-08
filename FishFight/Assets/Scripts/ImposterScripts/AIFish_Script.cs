@@ -143,7 +143,7 @@ public class AIFish_Script : MonoBehaviour
     Vector3 RandomNavmeshPoint()
     {
         float randoX = Random.Range(-9, 9);
-        float randoY = Random.Range(-3f, 3f);
+        float randoY = Random.Range(-2.5f, 2.5f);
         return new Vector3(randoX, randoY, 0);
     }
     Vector3 RandomNavmeshPointWithinRange(Vector3 center, float range)

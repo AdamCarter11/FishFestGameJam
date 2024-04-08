@@ -84,6 +84,10 @@ public class PlayerController : MonoBehaviour
             fishSpawner.SwapPosition(this.gameObject);
             swapAmmo--;
             swapAmmoText.text = "Swaps: " + swapAmmo;
+            if(swapAmmo <= 0)
+            {
+                swapAmmoText.color = Color.red;
+            }
         }
     }
 

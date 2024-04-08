@@ -47,6 +47,10 @@ public class Hunter : MonoBehaviour
             spawnedBait = Instantiate(baitPrefab, new Vector2(mousePosition.x, 5f), Quaternion.identity);
             baitsAmmo--;
             baitText.text = "Bait: " + baitsAmmo;
+            if(baitsAmmo <= 0)
+            {
+                baitText.color = Color.red;
+            }
         }
     }
 
