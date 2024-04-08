@@ -20,6 +20,8 @@ public class Brain : MonoBehaviour
     [SerializeField] GameObject escapeSprite;
     [SerializeField] GameObject escapeSprite2;
 
+    [SerializeField] GameObject rockImg, foodImg, algeaImg;
+
     public bool rockFilled;
     public bool algeaFilled;
     public bool foodFilled;
@@ -100,14 +102,17 @@ public class Brain : MonoBehaviour
         {
             rockFilled = true;
             print("rockFilled");
+            rockImg.GetComponent<Image>().color = Color.white;
         }
         if (drop == 2)
         {
             algeaFilled = true;
+            foodImg.GetComponent<Image>().color = Color.white;
         }
         if (drop == 3)
         {
             foodFilled = true;
+            algeaImg.GetComponent<Image>().color = Color.white;
         }
         if (foodFilled && algeaFilled && rockFilled) 
         {
