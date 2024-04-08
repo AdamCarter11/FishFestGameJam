@@ -22,7 +22,8 @@ public class FishSpawner : MonoBehaviour
             {
                 float spawnX = Random.Range(-5, 5);
                 float spawnY = Random.Range(-3.5f, 3.5f);
-                Vector2 spawnPos = new Vector2(spawnX, spawnY);
+                float spawnZ = 0;
+                Vector3 spawnPos = new Vector3(spawnX, spawnY, spawnZ);
                 GameObject tempFish = Instantiate(fishPref, spawnPos, Quaternion.identity);
                 spawnedFish.Add(tempFish);
             }

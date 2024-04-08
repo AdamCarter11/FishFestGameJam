@@ -39,8 +39,10 @@ public class AIFish_Script : MonoBehaviour
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        transform.rotation = Quaternion.identity;
         agent.updateRotation = false;
         agent.updateUpAxis = false;
+        transform.rotation = Quaternion.identity;
         SetRandomDestination();
         timer = Time.time;
         lastRandomPoint = transform.position;
