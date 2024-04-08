@@ -18,6 +18,7 @@ public class Brain : MonoBehaviour
     [SerializeField] GameObject live2;
     [SerializeField] GameObject live3;
     [SerializeField] GameObject escapeSprite;
+    [SerializeField] GameObject escapeSprite2;
 
     public bool rockFilled;
     public bool algeaFilled;
@@ -111,9 +112,11 @@ public class Brain : MonoBehaviour
         if (foodFilled && algeaFilled && rockFilled) 
         {
             escapeSprite.SetActive(true);
+            escapeSprite2.SetActive(true);
         }
         else
         {
+            escapeSprite2.SetActive(false);
             escapeSprite.SetActive(false);
         }
     }
