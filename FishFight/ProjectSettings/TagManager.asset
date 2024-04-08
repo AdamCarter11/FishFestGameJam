@@ -16,6 +16,7 @@ TagManager:
   - Pickup
   - bait
   - fishSpawner
+  - swapText
   layers:
   - Default
   - TransparentFX

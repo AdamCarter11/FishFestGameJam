@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-
+    [SerializeField] int swapAmmo = 1;
+    [SerializeField] TextMeshProUGUI swapAmmoText;
     [SerializeField] float moveSpeed = 5f; // Speed at which player moves
     [SerializeField] float acceleration = 5f; // Acceleration of player
     [SerializeField] float maxSpeed = 10f; // Maximum speed player can reach
@@ -54,6 +56,8 @@ public class PlayerController : MonoBehaviour
             pickUp = GameObject.FindGameObjectWithTag("Pickup").GetComponent<AudioSource>();
 
         fishSpawner = GameObject.FindGameObjectWithTag("fishSpawner").GetComponent<FishSpawner>();
+        swapAmmoText = GameObject.FindGameObjectWithTag("swapText").GetComponent<TextMeshProUGUI>();
+        swapAmmoText.text = "Swaps: " + swapAmmo;
     }
 
     // Update is called once per frame
@@ -75,9 +79,11 @@ public class PlayerController : MonoBehaviour
 
     private void SwapLogic()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q) && swapAmmo > 0)
         {
             fishSpawner.SwapPosition(this.gameObject);
+            swapAmmo--;
+            swapAmmoText.text = "Swaps: " + swapAmmo;
         }
     }
 
