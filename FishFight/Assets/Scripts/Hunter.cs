@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Hunter : MonoBehaviour
@@ -10,10 +11,13 @@ public class Hunter : MonoBehaviour
     [SerializeField] AudioSource click;
     [SerializeField] GameObject baitPrefab;
     [SerializeField] int baitsAmmo = 2;
+    [SerializeField] TextMeshProUGUI baitText;
+    GameObject spawnedBait;
     // Start is called before the first frame update
     void Start()
     {
         Cursor.visible = false;
+        baitText.text = "Bait: " + baitsAmmo;
     }
 
     // Update is called once per frame
@@ -38,10 +42,11 @@ public class Hunter : MonoBehaviour
             click.Play();
 
         }
-        if(Input.GetMouseButtonDown(1) && brain.gameOver == false && baitsAmmo > 0)
+        if(Input.GetMouseButtonDown(1) && brain.gameOver == false && baitsAmmo > 0 && spawnedBait == null)
         {
-            Instantiate(baitPrefab, new Vector2(mousePosition.x, 5f), Quaternion.identity);
+            spawnedBait = Instantiate(baitPrefab, new Vector2(mousePosition.x, 5f), Quaternion.identity);
             baitsAmmo--;
+            baitText.text = "Bait: " + baitsAmmo;
         }
     }
 
